@@ -17,4 +17,5 @@
 const Route = use('Route')
 
 Route.post('/session','SessionController.create')
-Route.get('/',() => 'Helllo World').middleware(['auth'])
+Route.get('/',({ response })=>response.json({msg: 'Hello World'}))
+
