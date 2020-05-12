@@ -7,6 +7,9 @@ class Reply extends Model {
 	user () {
 		return this.belongsTo('App/Models/User')
 	}
+	problem(){
+		return this.belongsTo('App/Models/Problem')
+	}
 	image_replies () {
 		return this.hasMany('App/Models/ImageReply')
 	}

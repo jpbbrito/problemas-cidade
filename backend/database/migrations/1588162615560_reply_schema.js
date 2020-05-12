@@ -15,6 +15,13 @@ class ReplySchema extends Schema {
         .onUpdate('CASCADE')
         .onDelete('CASCADE')
       table.text('description').notNullable()
+      table
+		.integer('problem_id')
+		.unsigned()
+		.references('id')
+		.inTable('problem')
+		.onUpdate('CASCADE')
+		.onDelete('CASCADE')      
       table.timestamps()
     })
   }

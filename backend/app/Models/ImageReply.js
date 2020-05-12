@@ -4,6 +4,9 @@
 const Model = use('Model')
 
 class ImageReply extends Model {
+	reply () {
+		return this.belongsTo('App/Models/Reply')
+	}
 }
 
 module.exports = ImageReply
