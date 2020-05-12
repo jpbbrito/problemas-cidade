@@ -17,5 +17,8 @@
 const Route = use('Route')
 
 Route.post('/session','SessionController.create')
-Route.get('/',({ response })=>response.json({msg: 'Hello World'}))
+
+Route.post('/problems', 'ProblemController.store').middleware('auth')
+Route.get('/problems', 'ProblemController.index')
+
 
