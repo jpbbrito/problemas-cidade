@@ -3,16 +3,35 @@
 const Problem = use('App/Models/Problem')
 
 class ProblemController {
-    async index() {
-        const problems = await Problem.all()
+    async index({ request }) {
+		const { latitude , longitude } = request.all()
+        const problems = await Problem.query()
+		  .nearBy(latitude, longitude, 10)
+		  .fetch()
+        
         return problems
     }
     
     async show({ params }) {
 		const { id } = params
-		console.log(id)
 		const problem = await Problem.findOrFail(id)
-		console.log(problem)
+
+		return problem		
+	}
+	
+	async store({ auth, request, response }){
+		const { id } = auth.user
+		
+		const data = request.only([
+			'description',
+			'address',
+			'tag',
+			'latitude',
+			'longitude'
+		])
+		
+		const problem = await Problem.create({ ...data})
+		
 		return problem		
 	}
 }
