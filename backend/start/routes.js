@@ -20,7 +20,7 @@ Route.post('session','SessionController.create')
 
 Route.post('problem', 'ProblemController.store').middleware('auth')
 Route.get('problem', 'ProblemController.index')
-Route.get('problem/:id','ProblemController.show')
+Route.get('problem/:id','ProblemController.show').middleware('auth')
 
 
 

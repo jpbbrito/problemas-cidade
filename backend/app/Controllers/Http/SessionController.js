@@ -9,10 +9,7 @@ class SessionController {
         } catch(error){
             throw new Error(error)
         }
-    }
-        
-
-        
+    }     
 }
 
 module.exports = SessionController
