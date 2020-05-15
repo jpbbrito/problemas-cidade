@@ -7,6 +7,13 @@ trait('Test/ApiClient')
 trait('Auth/Client')
 
 const userTest = {username: 'test', email: 'test@test.com', password:'test123'}
+const problemTest = {
+	description: 'Burraco no asfalto e mau cheiro' ,
+	address: 'Av. Ayrton Senna. Prox. a Guarda Municipal',
+	tag: 'REDE DE ESGOTO' ,
+	latitude: -12.140807,
+	longitude: -38.408007  
+}
 
 test('get token', async ({ client }) => {
 	await User.create(userTest)
@@ -22,15 +29,13 @@ test('get token', async ({ client }) => {
 test('create problem', async ({ client}) => {
 	const response = await client
 	  .post('/problem')
-	  .send({
-		description: 'Burraco no asfalto  e mau cheiro' ,
-		address: 'Av. Ayrton Senna. Prox. a Guarda Municipal',
-		tag: 'REDE DE ESGOTO' ,
-		latitude: -12.140807,
-		longitude: -38.408007  
-	  })
+	  .header('authorization',`bearer ${userTest.auth.token}`)
+	  .send(problemTest)
 	  .end()
 	 response.assertStatus(200)
-		
+	 response.assertJSONSubset(problemTest)	
 })
+
+
 	
+
