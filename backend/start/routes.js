@@ -18,9 +18,10 @@ const Route = use('Route')
 
 Route.post('session','SessionController.create')
 
-Route.post('problem', 'ProblemController.store').middleware('auth')
-Route.get('problem', 'ProblemController.index')
-Route.get('problem/:id','ProblemController.show').middleware('auth')
+Route.post('problems', 'ProblemController.store').middleware('auth')
+Route.get('problems', 'ProblemController.index')
+Route.get('problems/:id','ProblemController.show')
+Route.post('problems/:id/images', 'ImageController.store').middleware('auth')
 
 
 

@@ -3,17 +3,16 @@
 const Problem = use('App/Models/Problem')
 
 class ProblemController {
+	
     async index({ request }) {
-		const { latitude , longitude } = request.all()
-        const problems = await Problem.query()
-		  .nearBy(latitude, longitude, 10)
+		const problems = await Problem.query()
+		  .with('image_problems')
 		  .fetch()
         return problems
     }
     
     async show({ params }) {
-		const { id } = params
-		const problem = await Problem.findOrFail(id)
+		const problem = await Problem.findOrFail(params.id)
 		return problem		
 	}
 	

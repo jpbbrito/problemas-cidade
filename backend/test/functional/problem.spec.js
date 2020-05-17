@@ -2,6 +2,7 @@
 
 const { trait, test } = use('Test/Suite')('Problem')
 const User = use('App/Models/User')
+const helpers = use('Helpers')
 
 trait('Test/ApiClient')
 trait('Auth/Client')
@@ -28,12 +29,39 @@ test('get token', async ({ client }) => {
 
 test('create problem', async ({ client}) => {
 	const response = await client
-	  .post('/problem')
+	  .post('/problems')
 	  .header('authorization',`bearer ${userTest.auth.token}`)
 	  .send(problemTest)
 	  .end()
 	 response.assertStatus(200)
 	 response.assertJSONSubset(problemTest)	
+})
+
+test('send image problem', async ({ client}) => {
+	const response = await client
+	  .post(`/problems/1/images`)
+	  .header('authorization',`bearer ${userTest.auth.token}`)
+	  .attach('image[]',`${__dirname}/files/Corporate_Sunrise.png`)
+	  .end()
+	//console.log(response)
+	response.assertStatus(200)
+	//response.assertJSONSubset(problemTest)	
+})
+
+test('get all problem', async ({ client }) => {
+	const response = await client
+	  .get('/problems')
+	  .end()
+	response.assertStatus(200)
+	response.assertJSONSubset([problemTest])	
+})
+
+test('get problem by id', async ({ client}) => {
+	const response = await client
+	  .get('/problems/1')
+	  .end()
+	response.assertStatus(200)
+	response.assertJSONSubset(problemTest)	
 })
 
 
