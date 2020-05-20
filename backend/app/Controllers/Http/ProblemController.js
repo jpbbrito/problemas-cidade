@@ -16,8 +16,7 @@ class ProblemController {
 		return problem		
 	}
 	
-	async store({ auth, request, response }){
-		const { id } = auth.user
+	async store({ request }){
 		const data = request.only([
 			'description',
 			'address',
@@ -27,6 +26,12 @@ class ProblemController {
 		])
 		const problem = await Problem.create({ ...data})
 		return problem		
+	}
+
+	async destroy({ params }){
+		const problem = await Problem.find(params.id)
+		await problem.delete()
+		return problem
 	}
 }
 

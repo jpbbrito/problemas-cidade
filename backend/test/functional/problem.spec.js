@@ -30,7 +30,6 @@ test('get token', async ({ client }) => {
 test('create problem', async ({ client}) => {
 	const response = await client
 	  .post('/problems')
-	  .header('authorization',`bearer ${userTest.auth.token}`)
 	  .send(problemTest)
 	  .end()
 	 response.assertStatus(200)
@@ -40,7 +39,6 @@ test('create problem', async ({ client}) => {
 test('send image problem', async ({ client}) => {
 	const response = await client
 	  .post(`/problems/1/images`)
-	  .header('authorization',`bearer ${userTest.auth.token}`)
 	  .attach('image[]',`${__dirname}/files/Corporate_Sunrise.png`)
 	  .end()
 	//console.log(response)
@@ -59,6 +57,15 @@ test('get all problem', async ({ client }) => {
 test('get problem by id', async ({ client}) => {
 	const response = await client
 	  .get('/problems/1')
+	  .end()
+	response.assertStatus(200)
+	response.assertJSONSubset(problemTest)	
+})
+
+test('delete problem by id', async ({ client}) => {
+	const response = await client
+	  .delete('/problems/1')
+	  .header('authorization',`bearer ${userTest.auth.token}`)
 	  .end()
 	response.assertStatus(200)
 	response.assertJSONSubset(problemTest)	

@@ -18,10 +18,11 @@ const Route = use('Route')
 
 Route.post('session','SessionController.create')
 
-Route.post('problems', 'ProblemController.store').middleware('auth')
+Route.post('problems', 'ProblemController.store')
 Route.get('problems', 'ProblemController.index')
 Route.get('problems/:id','ProblemController.show')
-Route.post('problems/:id/images', 'ImageController.store').middleware('auth')
+Route.post('problems/:id/images', 'ImageController.store')
+Route.delete('problems/:id', 'ProblemController.destroy').middleware('auth')
 
 
 
