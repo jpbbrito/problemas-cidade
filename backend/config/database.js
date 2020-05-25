@@ -80,5 +80,24 @@ module.exports = {
       database: Env.get('DB_DATABASE', 'adonis')
     },
     debug: Env.get('DB_DEBUG', false)
+  },
+
+  /*
+  |--------------------------------------------------------------------------
+  | OracleDB
+  |--------------------------------------------------------------------------
+  |
+  | Here we define connection settings for PostgreSQL database.
+  |
+  | npm i --save pg
+  |
+  */
+ oracledb: {
+  client: 'oracledb',
+  connection: {
+    user: Env.get('DB_USER', 'root'),
+    password: Env.get('DB_PASSWORD', ''),
+    connectString: Env.get('DB_CONNECT', '')
   }
+}
 }
