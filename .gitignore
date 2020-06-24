@@ -1,3 +1,4 @@
+# NESTJS
 # compiled output
 backend/dist
 backend/node_modules
@@ -10,7 +11,7 @@ backend/yarn-debug.log*
 backend/yarn-error.log*
 backend/lerna-debug.log*
 # TypeORM
-backend/.ormconfig.json
+backend/ormconfig.json
 
 # OS
 backend/.DS_Store
