@@ -1,0 +1,9 @@
+{
+    "type": "oracle",
+    "username": "admin",
+    "password": "@S3nh44dm1n1tr4d0r",
+    "logging": true,
+    "connectString": "probcidadedb1_high",
+    "entities": ["dist/**/*.entity{.ts,.js}"],
+    "synchronize": false
+}
