@@ -1,6 +1,5 @@
-<div align="center">
 # Problemas na Cidade :construction: 
-</div>
+
 Esse é um projeto pessoal que visa criar uma solução para registro de problemas de infraestrutura nas cidades. 
 O projeto vai englobar todas as partes API, App Mobile e Web.
 Com o App Mobile é será possivel cadastrar o problema e adicionar fotos, localização e descrição. 
